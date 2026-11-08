@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b18" id="themeColorMeta">
+  <meta name="description" content="پناه؛ چند دقیقه مکث، نفس عمیق و مهربانی با خودت.">
+  <title>پناه | چند دقیقه برای خودت</title>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('panah-theme');
+      // پناه برای بازدید اول با حالت شب باز می‌شود؛ انتخاب قبلی کاربر محترم است.
+      if (savedTheme !== 'light') {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    } catch (_) {}
+  </script>
+  <script>
+    // هر بار ورود به صفحه از ابتدای سایت شروع می‌شود؛ اسکرول داخلی فقط با انتخاب کاربر انجام می‌شود.
+    try {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    } catch (_) {}
+  </script>
+  <style>
+    :root{
+      --ink:#233b3a; --muted:#71827c; --paper:#f5f7f2; --white:#fffefa;
+      --sage:#a8c2ae; --sage-dark:#557b69; --mint:#dcebe0; --blue:#dce9e8;
+      --peach:#f1d9c9; --lav:#e8e1ef; --line:rgba(65,94,79,.13);
+      --shadow:0 22px 70px rgba(58,83,69,.10); --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Vazirmatn,IRANSans,Tahoma,system-ui,sans-serif;line-height:1.9;overflow-x:hidden}
+    button,textarea{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    ::selection{background:#d5e8d9;color:#23463a}
+    .ambient-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:radial-gradient(ellipse at 14% 12%,rgba(221,235,224,.78),transparent 35%),radial-gradient(ellipse at 87% 32%,rgba(224,234,239,.65),transparent 32%),linear-gradient(180deg,#f6f8f3,#f2f6f2 56%,#f7f5ef)}
+    .ambient-bg:before,.ambient-bg:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.6}
+    .ambient-bg:before{width:380px;height:380px;top:30%;right:-240px;background:radial-gradient(circle,#e4dff0,transparent 68%)}
+    .ambient-bg:after{width:440px;height:440px;bottom:-260px;left:-220px;background:radial-gradient(circle,#dcebe0,transparent 68%)}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(247,249,245,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(67,99,79,.08)}
+    .nav-wrap{max-width:1180px;margin:auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .nav-tools{display:flex;align-items:center;gap:9px}
+    .theme-toggle{white-space:nowrap}
+    .theme-icon{font-size:1.05rem;line-height:1}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.3rem;letter-spacing:-.04em}
+    .brand-mark{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#dcebe0,#e8eee5);box-shadow:inset 0 0 0 1px rgba(85,123,105,.12)}
+    .brand-mark svg{width:24px;height:24px}
+    .nav-links{display:flex;gap:25px;align-items:center;color:#6d7f76;font-size:.9rem}
+    .nav-links a{transition:color .2s}.nav-links a:hover{color:var(--sage-dark)}
+    .sound-toggle{border:1px solid var(--line);background:rgba(255,255,255,.7);color:var(--ink);border-radius:999px;padding:9px 15px;display:flex;align-items:center;gap:8px;font-size:.86rem;transition:.2s}
+    .sound-toggle:hover{background:white;transform:translateY(-1px)}
+    .sound-dot{width:8px;height:8px;border-radius:50%;background:#a2b2aa;box-shadow:0 0 0 4px #eaf0eb}
+    .sound-toggle[aria-pressed="true"] .sound-dot{background:#6e9b7e;box-shadow:0 0 0 4px #e4efe5}
+    main{max-width:1180px;margin:auto;padding:0 24px 70px}
+    .hero{min-height:540px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:40px;padding:55px 0 54px;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:#668274;background:rgba(226,238,228,.74);border:1px solid rgba(110,148,121,.15);border-radius:999px;padding:7px 14px;font-size:.82rem}
+    .eyebrow span{width:7px;height:7px;background:#83a78c;border-radius:50%;box-shadow:0 0 0 5px rgba(131,167,140,.13)}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(2.5rem,5.2vw,4.7rem);line-height:1.35;letter-spacing:-.055em;margin:22px 0 18px;font-weight:900;max-width:650px}
+    h1 em{font-style:normal;color:#668b73;position:relative;white-space:nowrap}
+    .hero-copy{max-width:570px;color:#718079;font-size:1.08rem;line-height:2.1;margin-bottom:28px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{border:0;border-radius:999px;padding:13px 23px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:transform .2s,box-shadow .2s,background .2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:#668d74;color:#fff;box-shadow:0 12px 24px rgba(82,125,96,.2)}
+    .btn-primary:hover{background:#557d64;box-shadow:0 16px 28px rgba(82,125,96,.24)}
+    .btn-soft{background:rgba(255,255,255,.72);color:#587363;border:1px solid var(--line)}
+    .btn-soft:hover{background:white}
+    .hero-note{margin-top:25px;color:#98a69f;font-size:.82rem;display:flex;align-items:center;gap:8px}
+    .hero-note svg{width:16px;height:16px}
+    .hero-art{position:relative;min-height:420px;display:grid;place-items:center}
+    .hero-halo{position:absolute;width:min(420px,90%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(223,237,225,.72),rgba(231,237,231,.3) 55%,transparent 70%);filter:blur(2px)}
+    .hero-orb{width:260px;aspect-ratio:1;border-radius:50%;position:relative;display:grid;place-items:center;background:radial-gradient(circle at 34% 27%,#fff 0%,#e6f0e6 24%,#c4dcc9 54%,#9fbea8 80%,#87a995 100%);box-shadow:inset -18px -24px 44px rgba(79,119,90,.15),inset 10px 12px 30px rgba(255,255,255,.8),0 28px 65px rgba(102,145,116,.18);animation:float 7s ease-in-out infinite}
+    .hero-orb:before,.hero-orb:after{content:"";position:absolute;border:1px solid rgba(118,157,128,.22);border-radius:50%;inset:-24px;animation:ring 8s ease-in-out infinite}
+    .hero-orb:after{inset:-48px;opacity:.6;animation-delay:-3s}
+    .orb-leaf{width:76px;height:105px;position:relative;transform:rotate(35deg);border-radius:100% 0 100% 0;background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(122,167,135,.5));filter:drop-shadow(0 8px 12px rgba(74,116,86,.1))}
+    .orb-leaf:after{content:"";position:absolute;width:1px;height:84%;background:rgba(91,132,101,.28);left:50%;top:8%;transform:rotate(-22deg)}
+    .floating-word{position:absolute;background:rgba(255,255,255,.76);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.85);box-shadow:0 12px 35px rgba(54,84,66,.08);border-radius:18px;padding:10px 16px;color:#71867a;font-size:.85rem}
+    .floating-word.one{top:60px;right:4%}.floating-word.two{bottom:66px;left:2%}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+    @keyframes ring{0%,100%{transform:scale(.98);opacity:.55}50%{transform:scale(1.04);opacity:1}}
+    .section{padding:62px 0;scroll-margin-top:90px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:25px}
+    .section-kicker{font-size:.8rem;color:#88a091;margin-bottom:7px;font-weight:800;letter-spacing:.02em}
+    h2{font-size:clamp(1.7rem,3vw,2.55rem);line-height:1.5;letter-spacing:-.04em;margin-bottom:7px}
+    .section-sub{color:#829188;margin:0;font-size:.95rem}
+    .tiny-note{color:#9ba9a1;font-size:.78rem;max-width:250px;text-align:left}
+    .breath-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:stretch}
+    .panel{background:rgba(255,255,255,.73);border:1px solid rgba(87,122,99,.12);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .breath-options{padding:25px}
+    .panel-title{font-size:1rem;font-weight:900;margin-bottom:5px}
+    .panel-desc{font-size:.84rem;color:#8a9991;margin-bottom:20px}
+    .mode-list{display:grid;gap:10px}
+    .mode-card{border:1px solid rgba(92,126,103,.13);background:rgba(248,250,246,.75);border-radius:18px;padding:13px 14px;text-align:right;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--ink);transition:.2s;width:100%}
+    .mode-card:hover{border-color:#b6cdbb;transform:translateY(-1px)}
+    .mode-card[aria-pressed="true"]{background:#edf5ed;border-color:#9dbda4;box-shadow:inset 0 0 0 1px rgba(110,150,119,.12)}
+    .mode-name{display:block;font-weight:850;font-size:.92rem}
+    .mode-detail{display:block;color:#71877a;font-size:.77rem;margin-top:3px;line-height:1.8}
+    .mode-rhythm{display:block;color:#9aa99f;font-size:.7rem;margin-top:3px}
+    .mode-time{font-size:.75rem;color:#7e9785;background:#fff;border-radius:99px;padding:4px 9px;white-space:nowrap;flex-shrink:0}
+    .breath-stage{position:relative;min-height:490px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;overflow:hidden;background:linear-gradient(155deg,rgba(241,247,239,.9),rgba(235,243,242,.88))}
+    .breath-stage:before,.breath-stage:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+    .breath-stage:before{width:450px;height:450px;background:radial-gradient(circle,rgba(199,224,205,.35),transparent 68%);top:-190px;left:-130px}
+    .breath-stage:after{width:380px;height:380px;background:radial-gradient(circle,rgba(214,229,231,.45),transparent 68%);bottom:-210px;right:-120px}
+    .breath-topline{position:absolute;top:22px;right:24px;left:24px;display:flex;justify-content:space-between;color:#8b9c92;font-size:.78rem;z-index:2}
+    .orb-wrap{width:245px;height:245px;display:grid;place-items:center;position:relative;z-index:1;margin:14px 0 22px}
+    .orb-rings,.orb-rings:before,.orb-rings:after{position:absolute;inset:0;border:1px solid rgba(126,164,135,.22);border-radius:50%;content:""}
+    .orb-rings:before{inset:-18px;border-color:rgba(126,164,135,.15)}.orb-rings:after{inset:-36px;border-color:rgba(126,164,135,.1)}
+    .breath-orb{width:166px;height:166px;border-radius:50%;transform:scale(.82);transition:transform 4s ease-in-out;background:radial-gradient(circle at 33% 26%,#fff 0%,#e8f2e8 27%,#c3ddc9 62%,#9cbea6 100%);box-shadow:inset -13px -19px 32px rgba(82,124,94,.15),inset 8px 10px 25px rgba(255,255,255,.85),0 20px 45px rgba(103,147,114,.17);display:grid;place-items:center;position:relative}
+    .breath-orb:after{content:"";position:absolute;width:46px;height:63px;border-radius:100% 0 100% 0;transform:rotate(35deg);background:linear-gradient(145deg,rgba(255,255,255,.75),rgba(111,159,124,.42))}
+    .breath-orb.inhale{transform:scale(1.18)}.breath-orb.exhale{transform:scale(.78)}.breath-orb.hold{transform:scale(1.02)}
+    .breath-phase{font-size:1.45rem;font-weight:900;z-index:2;min-height:43px;margin:0 0 2px}
+    .breath-hint{color:#83948a;font-size:.83rem;min-height:27px;margin:0}
+    .countdown{font-size:.85rem;color:#84978b;margin-top:7px;font-variant-numeric:tabular-nums}
+    .breath-controls{display:flex;align-items:center;gap:10px;margin-top:18px;z-index:2}
+    .breath-controls .btn{min-width:132px;padding:11px 19px}
+    .icon-btn{width:43px;height:43px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.8);color:#688271;display:grid;place-items:center}
+    .icon-btn svg{width:18px;height:18px}
+    .micro-copy{font-size:.72rem;color:#a0aea5;margin-top:16px;text-align:center;z-index:2}
+    .mood-section{background:linear-gradient(120deg,rgba(233,242,233,.56),rgba(240,244,241,.2));border-radius:34px;padding:36px;margin-top:14px}
+    .mood-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin:22px 0 18px}
+    .mood-btn{border:1px solid rgba(89,125,101,.13);border-radius:20px;background:rgba(255,255,255,.72);padding:17px 9px;display:flex;flex-direction:column;align-items:center;gap:8px;color:#637b6b;transition:.22s}
+    .mood-btn:hover{transform:translateY(-3px);background:white}.mood-btn[aria-pressed="true"]{border-color:#9fbea6;background:#fff;box-shadow:0 10px 25px rgba(86,122,94,.1)}
+    .mood-emoji{font-size:1.65rem;line-height:1.3}.mood-label{font-size:.86rem;font-weight:800}
+    .comfort-card{display:none;align-items:flex-start;gap:16px;background:rgba(255,255,255,.76);border:1px solid rgba(100,140,109,.15);border-radius:22px;padding:18px 22px;animation:rise .45s ease both}
+    .comfort-card.show{display:flex}.comfort-symbol{width:44px;height:44px;flex:none;border-radius:15px;background:#edf4ed;display:grid;place-items:center;color:#73917a;font-size:1.2rem}
+    .comfort-copy{flex:1;min-width:0}.comfort-text{font-size:1rem;font-weight:750;line-height:1.9;margin:0;min-height:3.8em}.comfort-foot{font-size:.78rem;color:#91a096;margin:7px 0 0}
+    .comfort-more{margin-top:13px;border:1px solid rgba(103,145,115,.24);border-radius:999px;background:rgba(226,239,228,.72);color:#557b62;padding:8px 17px;font-size:.83rem;font-weight:800;transition:transform .2s,background .2s,border-color .2s}
+    .comfort-more:hover{transform:translateY(-2px);background:#e1eee3;border-color:#9fbea6}.comfort-more:focus-visible{outline:3px solid rgba(103,145,115,.35);outline-offset:3px}
+    html[data-theme="dark"] .comfort-more{background:#2c4938;border-color:rgba(157,193,165,.25);color:#d2e6d5}
+    html[data-theme="dark"] .comfort-more:hover{background:#365641;border-color:#7da585}
+    @media(max-width:560px){.comfort-card{padding:16px;gap:11px}.comfort-symbol{width:38px;height:38px}.comfort-text{font-size:.94rem;min-height:0}.comfort-more{margin-top:11px}}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .release-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:20px;align-items:stretch}
+    .release-aside{padding:29px;background:linear-gradient(150deg,#e8f0e8,#eef3ef)}
+    .release-aside .soft-illustration{width:100%;height:180px;display:grid;place-items:center;margin-bottom:18px}
+    .paper-illustration{width:118px;height:145px;background:#fffefa;border-radius:12px;transform:rotate(-7deg);box-shadow:0 16px 30px rgba(75,111,84,.13);position:relative;padding:24px 16px}
+    .paper-illustration:before{content:"";position:absolute;left:18px;right:18px;top:43px;height:1px;background:#dce6dd;box-shadow:0 17px 0 #dce6dd,0 34px 0 #dce6dd,0 51px 0 #dce6dd}
+    .paper-illustration:after{content:"✳";position:absolute;bottom:-14px;right:-21px;color:#89a88f;font-size:52px;transform:rotate(15deg)}
+    .release-aside h3{font-size:1.22rem;margin-bottom:8px}.release-aside p{color:#819087;font-size:.88rem;line-height:2;margin-bottom:0}
+    .privacy-line{display:flex;gap:8px;align-items:flex-start;color:#82988a;font-size:.76rem;margin-top:18px}
+    .privacy-line svg{width:16px;flex:none;margin-top:4px}
+    .write-panel{padding:24px;position:relative;overflow:hidden}
+    .write-label{font-weight:850;font-size:.96rem;display:block;margin-bottom:7px}
+    .write-prompt{font-size:.8rem;color:#95a198;margin-bottom:15px}
+    .letter-sheet{position:relative;background:#fbfcf8;border:1px solid rgba(91,128,100,.13);border-radius:20px;overflow:hidden;transition:transform .8s cubic-bezier(.2,.75,.2,1),opacity .8s,filter .8s;transform-origin:center}
+    .letter-sheet:before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0,transparent 34px,rgba(159,183,162,.16) 35px,transparent 36px);opacity:.7}
+    .letter-sheet textarea{position:relative;z-index:1;width:100%;min-height:190px;resize:vertical;background:transparent;border:0;outline:none;padding:17px 19px;color:#52695b;line-height:2.05;font-size:.94rem}
+    .letter-sheet textarea::placeholder{color:#b3beb5}
+    .letter-sheet.releasing{transform:translateY(-34px) rotate(-3deg) scale(.92);opacity:0;filter:blur(8px)}
+    .release-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+    .release-status{font-size:.77rem;color:#9aa89f;min-height:24px}
+    .release-particles{position:absolute;inset:90px 30px 60px;pointer-events:none;z-index:4}
+    .release-particles i{position:absolute;bottom:10px;right:50%;width:11px;height:16px;background:#b8d0bc;border-radius:80% 0 80% 0;opacity:0;animation:drift 1.55s ease-out forwards;animation-delay:var(--delay);transform:rotate(var(--rot))}
+    @keyframes drift{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.65)}15%{opacity:.9}100%{opacity:0;transform:translate(var(--x),-170px) rotate(160deg) scale(.25)}}
+    .garden-panel{padding:28px;position:relative;overflow:hidden;background:linear-gradient(180deg,#f0f5ef 0%,#eaf2eb 68%,#e1ede3 100%)}
+    .garden-top{display:flex;justify-content:space-between;align-items:center;gap:15px;position:relative;z-index:3}
+    .flower-count{font-size:.8rem;color:#809487;background:rgba(255,255,255,.7);padding:7px 13px;border-radius:99px}
+    .garden{height:280px;position:relative;margin-top:12px;overflow:hidden;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.04))}
+    .garden-sun{position:absolute;top:23px;left:13%;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,#fff5d7,#f2e6c4);box-shadow:0 0 0 12px rgba(255,244,213,.25),0 0 50px rgba(232,213,163,.35)}
+    .garden-cloud{position:absolute;top:65px;right:13%;width:78px;height:20px;border-radius:99px;background:rgba(255,255,255,.75);filter:blur(.2px)}.garden-cloud:before,.garden-cloud:after{content:"";position:absolute;background:inherit;border-radius:50%;bottom:4px}.garden-cloud:before{width:30px;height:30px;right:12px}.garden-cloud:after{width:24px;height:24px;right:34px}
+    .garden-hill{position:absolute;bottom:-105px;width:120%;height:210px;right:-10%;border-radius:50% 50% 0 0;background:linear-gradient(180deg,#c5dbc8,#afcdb4)}
+    .garden-hill.back{bottom:-130px;right:-32%;background:linear-gradient(180deg,#d4e5d5,#bed8c2);opacity:.8}
+    .empty-garden{position:absolute;z-index:2;bottom:35px;left:0;right:0;text-align:center;color:#78917e;font-size:.9rem;transition:opacity .3s}
+    .empty-garden small{display:block;color:#91a497;font-size:.75rem;margin-top:3px}
+    .flower{position:absolute;z-index:4;bottom:47px;width:54px;height:150px;transform-origin:bottom center;animation:grow .85s cubic-bezier(.2,.8,.2,1) both;filter:drop-shadow(0 5px 6px rgba(74,113,82,.1))}
+    .flower svg{width:100%;height:100%;overflow:visible}
+    @keyframes grow{0%{transform:scaleY(0) rotate(-8deg);opacity:0}70%{transform:scaleY(1.08) rotate(3deg);opacity:1}100%{transform:scaleY(1) rotate(0);opacity:1}}
+    .garden-action{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;position:relative;z-index:5;margin-top:5px}.garden-clear{font-size:.82rem;padding:10px 17px}.garden-clear:disabled{opacity:.42;cursor:not-allowed;transform:none}.comfort-library-note{margin-top:8px;font-size:.82rem}
+    .garden-caption{text-align:center;font-size:.76rem;color:#91a196;margin:13px 0 0}
+    .closing{padding:70px 20px 30px;text-align:center}
+    .closing-mark{margin:0 auto 14px;width:42px;height:42px;border-radius:15px;background:#e1ece2;display:grid;place-items:center;color:#668a70;font-size:1.25rem}
+    .closing h2{font-size:1.75rem}.closing p{color:#8c9a91;font-size:.9rem;margin:0}
+    footer{border-top:1px solid rgba(79,115,92,.1);padding:20px 24px 30px;text-align:center;color:#9aa79f;font-size:.78rem}
+    footer strong{color:#6f8877;font-weight:800}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#385b48;color:#fff;padding:10px 18px;border-radius:99px;box-shadow:0 12px 30px rgba(35,66,47,.2);font-size:.83rem;z-index:50;transition:.3s;white-space:nowrap}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid rgba(104,151,115,.42);outline-offset:3px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;gap:5px;text-align:center;padding-top:42px}.hero-copy{margin-inline:auto}.actions,.hero-note{justify-content:center}.hero-art{min-height:340px}.hero-orb{width:220px}.floating-word.one{right:10%}.floating-word.two{left:9%}.breath-layout,.release-layout{grid-template-columns:1fr}.breath-stage{min-height:455px}.mood-grid{grid-template-columns:repeat(3,1fr)}.section-head{align-items:start;flex-direction:column}.tiny-note{text-align:right;max-width:none}}
+    @media(max-width:560px){.nav-wrap{padding:10px 15px}.nav-links{display:none}.nav-tools{gap:6px}.sound-toggle{padding:8px 10px;font-size:.76rem}main{padding-inline:15px}.hero{min-height:auto;padding:48px 0 30px}h1{font-size:2.45rem}.hero-copy{font-size:.95rem}.hero-art{min-height:295px}.hero-orb{width:185px}.floating-word{font-size:.73rem;padding:8px 12px}.floating-word.one{top:38px}.floating-word.two{bottom:34px}.section{padding:43px 0}.mood-section{padding:23px 16px;border-radius:26px}.mood-grid{grid-template-columns:repeat(2,1fr);gap:8px}.mood-btn{padding:13px 7px}.breath-options,.write-panel,.garden-panel,.release-aside{padding:20px}.breath-stage{min-height:430px;padding:22px 15px}.orb-wrap{width:220px;height:220px}.breath-orb{width:148px;height:148px}.breath-topline{right:17px;left:17px;top:16px;font-size:.7rem}.release-aside .soft-illustration{height:130px}.garden{height:250px}.release-footer{align-items:flex-start;flex-direction:column}.release-footer .btn{width:100%}.closing{padding-top:52px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+    /* Dark mode: نرم، کم‌نور و هماهنگ با حال‌وهوای پناه */
+    html[data-theme="dark"]{color-scheme:dark;--ink:#e4eee8;--muted:#a8bab0;--paper:#101b18;--white:#1b2b25;--sage:#8caf96;--sage-dark:#a5c8ad;--mint:#263d33;--blue:#253b3b;--line:rgba(176,211,187,.16);--shadow:0 22px 70px rgba(0,0,0,.24)}
+    html[data-theme="dark"] body{background:var(--paper);color:var(--ink)}
+    html[data-theme="dark"] .ambient-bg{background:radial-gradient(ellipse at 14% 12%,rgba(49,82,65,.42),transparent 36%),radial-gradient(ellipse at 87% 32%,rgba(41,66,70,.38),transparent 34%),linear-gradient(180deg,#101b18,#121f1b 56%,#151d19)}
+    html[data-theme="dark"] .ambient-bg:before{background:radial-gradient(circle,#3a304b,transparent 68%);opacity:.38}
+    html[data-theme="dark"] .ambient-bg:after{background:radial-gradient(circle,#254b38,transparent 68%);opacity:.42}
+    html[data-theme="dark"] .topbar{background:rgba(15,27,23,.84);border-bottom-color:rgba(176,211,187,.1)}
+    html[data-theme="dark"] .brand-mark{background:linear-gradient(145deg,#294334,#263a31);box-shadow:inset 0 0 0 1px rgba(156,194,165,.15)}
+    html[data-theme="dark"] .brand-mark svg path{stroke:#a8c9ae}
+    html[data-theme="dark"] .nav-links{color:#a3b7aa}
+    html[data-theme="dark"] .sound-toggle{background:rgba(36,56,48,.82);color:#e0ece4;border-color:rgba(170,205,179,.18)}
+    html[data-theme="dark"] .sound-toggle:hover{background:#2b4338}
+    html[data-theme="dark"] .theme-toggle{background:rgba(47,65,58,.9)}
+    html[data-theme="dark"] .sound-dot{background:#71877a;box-shadow:0 0 0 4px rgba(100,130,111,.18)}
+    html[data-theme="dark"] .sound-toggle[aria-pressed="true"] .sound-dot{background:#a3d1a9;box-shadow:0 0 0 4px rgba(111,159,119,.2)}
+    html[data-theme="dark"] .eyebrow{color:#b1d0b8;background:rgba(54,83,64,.45);border-color:rgba(150,190,158,.18)}
+    html[data-theme="dark"] h1 em{color:#a8cbaa}
+    html[data-theme="dark"] .hero-copy{color:#b0c0b7}
+    html[data-theme="dark"] .btn-primary{background:#638e70;color:#fff;box-shadow:0 12px 24px rgba(0,0,0,.22)}
+    html[data-theme="dark"] .btn-primary:hover{background:#75a181}
+    html[data-theme="dark"] .btn-soft{background:rgba(37,57,48,.85);color:#c1ddc7;border-color:var(--line)}
+    html[data-theme="dark"] .btn-soft:hover{background:#30493c}
+    html[data-theme="dark"] .hero-note,html[data-theme="dark"] .section-sub,html[data-theme="dark"] .tiny-note{color:#91a69a}
+    html[data-theme="dark"] .hero-halo{background:radial-gradient(circle,rgba(81,126,91,.28),rgba(62,89,73,.12) 55%,transparent 70%)}
+    html[data-theme="dark"] .hero-orb{background:radial-gradient(circle at 34% 27%,#dcebdd 0%,#a9c9ad 24%,#719d7c 54%,#4f795c 80%,#3f674d 100%);box-shadow:inset -18px -24px 44px rgba(13,38,22,.28),inset 10px 12px 30px rgba(255,255,255,.28),0 28px 65px rgba(0,0,0,.28)}
+    html[data-theme="dark"] .orb-leaf{background:linear-gradient(145deg,rgba(238,250,239,.78),rgba(94,144,105,.65))}
+    html[data-theme="dark"] .floating-word{background:rgba(31,49,42,.88);border-color:rgba(172,204,179,.15);color:#b4c9ba;box-shadow:0 12px 35px rgba(0,0,0,.2)}
+    html[data-theme="dark"] .section-kicker{color:#91b59a}
+    html[data-theme="dark"] .panel{background:rgba(27,43,37,.88);border-color:rgba(161,197,169,.14);box-shadow:var(--shadow)}
+    html[data-theme="dark"] .panel-desc{color:#9aafa2}
+    html[data-theme="dark"] .mode-card{background:rgba(34,54,45,.88);border-color:rgba(157,193,165,.15);color:#e0ebe3}
+    html[data-theme="dark"] .mode-card:hover{border-color:#769e7f}
+    html[data-theme="dark"] .mode-card[aria-pressed="true"]{background:#2e4938;border-color:#779e7e;box-shadow:inset 0 0 0 1px rgba(150,193,157,.12)}
+    html[data-theme="dark"] .mode-detail{color:#b1c6b6}
+    html[data-theme="dark"] .mode-rhythm{color:#8fa798}
+    html[data-theme="dark"] .mode-time{color:#c0d9c4;background:#263d31}
+    html[data-theme="dark"] .mode-detail,html[data-theme="dark"] .breath-hint,html[data-theme="dark"] .countdown,html[data-theme="dark"] .micro-copy{color:#9aafa2}
+    html[data-theme="dark"] .mode-time{color:#b6d0bb;background:#263d31}
+    html[data-theme="dark"] .breath-stage{background:linear-gradient(155deg,rgba(34,55,44,.96),rgba(31,51,51,.94))}
+    html[data-theme="dark"] .breath-stage:before{background:radial-gradient(circle,rgba(91,143,100,.22),transparent 68%)}
+    html[data-theme="dark"] .breath-stage:after{background:radial-gradient(circle,rgba(80,119,125,.2),transparent 68%)}
+    html[data-theme="dark"] .breath-topline{color:#a1b8a8}
+    html[data-theme="dark"] .breath-orb{background:radial-gradient(circle at 33% 26%,#ecf8ed 0%,#c7e1ca 27%,#86b591 62%,#5b8967 100%);box-shadow:inset -13px -19px 32px rgba(35,82,47,.2),inset 8px 10px 25px rgba(255,255,255,.62),0 20px 45px rgba(0,0,0,.25)}
+    html[data-theme="dark"] .breath-orb:after{background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(90,145,105,.54))}
+    html[data-theme="dark"] .icon-btn{background:rgba(37,58,48,.9);color:#b9d5bf;border-color:var(--line)}
+    html[data-theme="dark"] .mood-section{background:linear-gradient(120deg,rgba(39,64,48,.74),rgba(31,49,46,.58))}
+    html[data-theme="dark"] .mood-btn{background:rgba(33,52,45,.9);border-color:rgba(157,193,165,.15);color:#bfd3c4}
+    html[data-theme="dark"] .mood-btn:hover,html[data-theme="dark"] .mood-btn[aria-pressed="true"]{background:#30493b;border-color:#7da585}
+    html[data-theme="dark"] .comfort-card{background:rgba(35,55,46,.96);border-color:rgba(155,192,164,.17)}
+    html[data-theme="dark"] .comfort-symbol{background:#304b3a;color:#b8d6be}
+    html[data-theme="dark"] .comfort-foot{color:#9bb0a1}
+    html[data-theme="dark"] .release-aside{background:linear-gradient(150deg,#263d32,#263936)}
+    html[data-theme="dark"] .paper-illustration{background:#e9eee6;box-shadow:0 16px 30px rgba(0,0,0,.25)}
+    html[data-theme="dark"] .paper-illustration:before{background:#cbd9cb;box-shadow:0 17px 0 #cbd9cb,0 34px 0 #cbd9cb,0 51px 0 #cbd9cb}
+    html[data-theme="dark"] .release-aside p{color:#a9bdb0}
+    html[data-theme="dark"] .privacy-line{color:#a0b8a6}
+    html[data-theme="dark"] .write-prompt{color:#9eb1a5}
+    html[data-theme="dark"] .letter-sheet{background:#1a2a24;border-color:rgba(162,197,169,.17)}
+    html[data-theme="dark"] .letter-sheet:before{background:repeating-linear-gradient(to bottom,transparent 0,transparent 34px,rgba(139,174,145,.12) 35px,transparent 36px)}
+    html[data-theme="dark"] .letter-sheet textarea{color:#d7e6da}
+    html[data-theme="dark"] .letter-sheet textarea::placeholder{color:#758d7d}
+    html[data-theme="dark"] .release-status{color:#9aafa1}
+    html[data-theme="dark"] .release-particles i{background:#9fc6a5}
+    html[data-theme="dark"] .garden-panel{background:linear-gradient(180deg,#253b30 0%,#23392e 68%,#20362c 100%)}
+    html[data-theme="dark"] .flower-count{color:#c0d6c5;background:rgba(27,46,36,.78)}
+    html[data-theme="dark"] .garden{background:linear-gradient(180deg,rgba(28,48,40,.22),rgba(15,31,25,.18))}
+    html[data-theme="dark"] .garden-hill{background:linear-gradient(180deg,#537e5c,#42694d)}
+    html[data-theme="dark"] .garden-hill.back{background:linear-gradient(180deg,#638b68,#527a5a)}
+    html[data-theme="dark"] .empty-garden{color:#d0e3d2}
+    html[data-theme="dark"] .empty-garden small{color:#adc9b1}
+    html[data-theme="dark"] .garden-caption{color:#a3b9a8}
+    html[data-theme="dark"] .closing-mark{background:#2a4433;color:#b4d3b9}
+    html[data-theme="dark"] .closing p{color:#9aafa2}
+    html[data-theme="dark"] footer{border-top-color:rgba(162,197,169,.14);color:#879d8e}
+    html[data-theme="dark"] footer strong{color:#b4d1b9}
+    html[data-theme="dark"] .toast{background:#c4e2ca;color:#183523;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+    html[data-theme="dark"] ::selection{background:#426b4e;color:#f5fff6}
+    @media(max-width:390px){.theme-toggle{padding:8px 9px}.theme-toggle #themeLabel{font-size:.7rem}}
+
+  </style>
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="nav-wrap">
+      <a class="brand" href="#home" aria-label="پناه، صفحه اصلی">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 25C9.5 20.5 7.2 14.7 10.3 10.8c2.1-2.7 5.2-1.5 5.7 1.2.5-2.7 3.6-3.9 5.7-1.2C24.8 14.7 22.5 20.5 16 25Z" stroke="#668B72" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 24V14" stroke="#668B72" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        <span>پناه</span>
+      </a>
+      <nav class="nav-links" aria-label="ناوبری اصلی"><a href="#breathing">تنفس آرام</a><a href="#mood">حال من</a><a href="#release">رها کردن</a><a href="#garden">باغ من</a></nav>
+      <div class="nav-tools">
+        <button class="sound-toggle theme-toggle" id="themeToggle" type="button" aria-pressed="true" aria-label="فعال کردن حالت روز"><span class="theme-icon" id="themeIcon" aria-hidden="true">☀</span><span id="themeLabel">حالت روز</span></button>
+        <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true"><span class="sound-dot"></span><span id="soundLabel">صدای آرام روشن</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow"><span></span> اینجا لازم نیست عجله کنی</div>
+        <h1>یه نفس عمیق...<br>و کمی <em>مهربونی</em> با خودت.</h1>
+        <p class="hero-copy">سلام رفیق. خوش اومدی به پناه. چند دقیقه از شلوغی دنیا فاصله بگیر. قرار نیست چیزی رو ثابت کنی یا همه‌چی رو همین الان حل کنی؛ فقط بیا یکم کنار خودت باشیم.</p>
+        <div class="actions"><a class="btn btn-primary" href="#breathing">بیا با هم نفس بکشیم <span aria-hidden="true">←</span></a><a class="btn btn-soft" href="#mood">اول از حالم بگم</a></div>
+        <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z"/><path d="M8 12h8"/></svg> هر طور که هستی، همین‌جا جات امنه.</div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-halo"></div><div class="hero-orb"><div class="orb-leaf"></div></div><div class="floating-word one">آروم باش، عجله‌ای نیست</div><div class="floating-word two">همین یک نفس کافیه 🍃</div></div>
+    </section>
+
+    <section class="section" id="breathing">
+      <div class="section-head"><div><div class="section-kicker">یک مکث کوچک برای خودت</div><h2>نفس بکش، با ریتمی که بهت می‌سازه</h2><p class="section-sub">گوی رو دنبال کن؛ وقتی بزرگ می‌شه دم بگیر و وقتی کوچیک می‌شه بازدم کن.</p></div><div class="tiny-note">هر وقت خواستی می‌تونی تمرین رو متوقف کنی. به بدن خودت گوش بده.</div></div>
+      <div class="breath-layout">
+        <div class="panel breath-options">
+          <div class="panel-title">کدوم تمرین به حالِ الانِت نزدیک‌تره؟</div><div class="panel-desc">هرکدوم کاربرد خودش رو داره؛ هر زمان هم خواستی می‌تونی عوضش کنی.</div>
+          <div class="mode-list" id="modeList">
+            <button class="mode-card" type="button" data-mode="calm" aria-pressed="true"><span><span class="mode-name">تنفس آرامش‌بخش</span><span class="mode-detail">برای وقتی که می‌خوای از تنش روز فاصله بگیری و آروم‌تر بشی.</span><span class="mode-rhythm">دم ۴ ثانیه · بازدم ۶ ثانیه</span></span><span class="mode-time">آرام‌سازی</span></button>
+            <button class="mode-card" type="button" data-mode="balance" aria-pressed="false"><span><span class="mode-name">تنفس متعادل‌کننده</span><span class="mode-detail">برای وقتی که ذهنت شلوغه و دلت یک ریتم یکنواخت می‌خواد.</span><span class="mode-rhythm">دم ۵ ثانیه · بازدم ۵ ثانیه</span></span><span class="mode-time">تعادل</span></button>
+            <button class="mode-card" type="button" data-mode="box" aria-pressed="false"><span><span class="mode-name">تنفس برای تمرکز</span><span class="mode-detail">برای یک مکث کوتاه و جمع‌کردن حواس؛ مکث‌ها کاملاً اختیاری‌اند.</span><span class="mode-rhythm">دم، مکث، بازدم، مکث · هرکدام ۴ ثانیه</span></span><span class="mode-time">تمرکز</span></button>
+            <button class="mode-card" type="button" data-mode="sleep" aria-pressed="false"><span><span class="mode-name">تنفس پیش از خواب</span><span class="mode-detail">برای پایان آرام روز و آماده‌شدن برای استراحت، بدون عجله.</span><span class="mode-rhythm">دم ۴ ثانیه · بازدم ۷ ثانیه</span></span><span class="mode-time">استراحت</span></button>
+          </div>
+        </div>
+        <div class="panel breath-stage" aria-label="راهنمای تعاملی تنفس">
+          <div class="breath-topline"><span id="selectedModeLabel">تمرین آروم و پیوسته</span><span id="cycleLabel">هنوز شروع نکردیم</span></div>
+          <div class="orb-wrap"><div class="orb-rings" aria-hidden="true"></div><div class="breath-orb" id="breathOrb" aria-hidden="true"></div></div>
+          <p class="breath-phase" id="breathPhase" aria-live="polite">آماده‌ای؟</p><p class="breath-hint" id="breathHint">هر وقت آماده شدی، شروع رو بزن.</p><div class="countdown" id="countdown">این چند لحظه مال خودته</div>
+          <div class="breath-controls"><button class="btn btn-primary" id="breathStart" type="button">شروع تمرین</button><button class="icon-btn" id="breathReset" type="button" aria-label="بازنشانی تمرین" title="از نو"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/><path d="M3 3v5h5"/></svg></button></div>
+          <div class="micro-copy">نفس رو حبس نکن مگر در تمرینی که خودت انتخاب کردی؛ اگر معذب شدی، به تنفس طبیعی برگرد.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mood">
+      <div class="mood-section">
+        <div class="section-kicker">حالت رو قضاوت نمی‌کنیم</div><h2>الان دلت چه‌جوریه؟</h2><p class="section-sub">یکی رو انتخاب کن تا چند کلمه مخصوص همین حال‌وهوا برات داشته باشیم.</p>
+        <p class="section-sub comfort-library-note">برای هر حال‌وهوا ۱۲۰۰ پیام داریم؛ یعنی روی‌هم ۶۰۰۰ پیام که تا تموم نشن، برات تکراری نمی‌شن. انتخابت هم روی همین دستگاه می‌مونه.</p><div class="mood-grid" role="group" aria-label="انتخاب حال امروز">
+          <button class="mood-btn" type="button" data-mood="sad" aria-pressed="false"><span class="mood-emoji">🌧️</span><span class="mood-label">دلم گرفته</span></button>
+          <button class="mood-btn" type="button" data-mood="anxious" aria-pressed="false"><span class="mood-emoji">🫧</span><span class="mood-label">استرس دارم</span></button>
+          <button class="mood-btn" type="button" data-mood="busy" aria-pressed="false"><span class="mood-emoji">🌪️</span><span class="mood-label">ذهنم شلوغه</span></button>
+          <button class="mood-btn" type="button" data-mood="tired" aria-pressed="false"><span class="mood-emoji">🌙</span><span class="mood-label">خیلی خسته‌ام</span></button>
+          <button class="mood-btn" type="button" data-mood="good" aria-pressed="false"><span class="mood-emoji">☀️</span><span class="mood-label">حالم بد نیست</span></button>
+        </div>
+        <div class="comfort-card" id="comfortCard" aria-live="polite"><div class="comfort-symbol" aria-hidden="true">♡</div><div class="comfort-copy"><p class="comfort-text" id="comfortText"></p><p class="comfort-foot" id="comfortFoot"></p><button class="comfort-more" id="comfortMore" type="button">بازم بگو</button></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="release">
+      <div class="section-head"><div><div class="section-kicker">قرار نیست همه‌چی رو با خودت ببری</div><h2>هرچی روی دلت مونده، اینجا بذارش</h2><p class="section-sub">لازم نیست قشنگ یا مرتب بنویسی. فقط همون چیزی رو بگو که توی دلت می‌گذره.</p></div></div>
+      <div class="release-layout">
+        <aside class="panel release-aside"><div class="soft-illustration" aria-hidden="true"><div class="paper-illustration"></div></div><h3>بی‌سانسور، برای خودت بنویس</h3><p>شاید ناراحتی، شاید عصبانی‌ای، شاید فقط نمی‌دونی چه حسی داری. همه‌شون حق دارن اینجا باشن. وقتی آماده شدی، می‌تونی نوشته‌ات رو با یک حرکت آروم رها کنی.</p><div class="privacy-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>نوشته‌ات فقط داخل همین صفحه می‌مونه؛ به جایی فرستاده یا ذخیره نمی‌شه.</span></div></aside>
+        <div class="panel write-panel"><label class="write-label" for="heartNote">دوست داری چی رو از دلت بیرون بریزی؟</label><p class="write-prompt">می‌تونی از چیزی که ناراحتت کرده، چیزی که دلت می‌خواست بگی یا حتی یک فکر تکراری بنویسی.</p><div class="letter-sheet" id="letterSheet"><textarea id="heartNote" maxlength="1500" placeholder="مثلاً... امروز یه چیزی اذیتم کرد و هنوز نتونستم از ذهنم بیرونش کنم..." aria-label="نوشته‌ای برای رها کردن"></textarea></div><div class="release-particles" id="releaseParticles" aria-hidden="true"></div><div class="release-footer"><span class="release-status" id="releaseStatus" aria-live="polite">هر وقت آماده بودی، دکمه‌ی رها کردن رو بزن.</span><button class="btn btn-primary" id="releaseButton" type="button">رهاش می‌کنم <span aria-hidden="true">✧</span></button></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="garden">
+      <div class="section-head"><div><div class="section-kicker">رشدهای کوچیک هم قشنگن</div><h2>باغ کوچولوی پناه</h2><p class="section-sub">برای هر لحظه‌ای که به خودت فرصت دادی، یه گل بکار.</p></div><div class="tiny-note">باغت از صفر شروع می‌شه؛ هر بار که گل می‌کاری، یکی بهش اضافه می‌شه.</div></div>
+      <div class="panel garden-panel"><div class="garden-top"><strong>باغ امروز من 🌱</strong><span class="flower-count" id="flowerCount">۰ گل کاشتی</span></div><div class="garden" id="gardenCanvas" aria-label="باغ گل‌های تو"><div class="garden-sun"></div><div class="garden-cloud"></div><div class="garden-hill back"></div><div class="garden-hill"></div><div class="empty-garden" id="emptyGarden">اینجا هنوز گلی نروییده<small>اولین گل رو تو بکار...</small></div></div><div class="garden-action"><button class="btn btn-primary" id="plantButton" type="button">+ یک گل بکار</button><button class="btn btn-soft garden-clear" id="clearGardenButton" type="button" disabled>پاک کردن گل‌ها</button></div><p class="garden-caption">لازم نیست هر روز شکوفا باشی؛ همین که ادامه می‌دی قشنگه.</p></div>
+    </section>
+
+    <section class="closing"><div class="closing-mark">♡</div><h2>یادت نره، تو هم به مراقبت نیاز داری.</h2><p>امروز هرچقدر تونستی، همون کافیه. یه نفس دیگه؟</p></section>
+  </main>
+  <footer>با مهر، برای روزهای شلوغ و دل‌های خسته · طراحی و توسعه: <strong>امیر حسین کاکولوندی</strong></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (() => {
+    'use strict';
+    const $ = (selector, root=document) => root.querySelector(selector);
+    const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
+    // تنظیمات، انتخاب‌ها و پیشرفت هر مرورگر روی همان دستگاه نگه داشته می‌شوند.
+    const SETTINGS_KEY='panah-settings-v1';
+    function readSettings(){try{return JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')||{}}catch(_){return {}}}
+    function readPreference(key,fallback=null){const settings=readSettings();return Object.prototype.hasOwnProperty.call(settings,key)?settings[key]:fallback}
+    function savePreference(key,value){try{const settings=readSettings();settings[key]=value;localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings))}catch(_){showToast('فضای ذخیره‌سازی مرورگر در دسترس نیست.')}}
+    // جلوگیری از پرش خودکار به بخش‌های پایین صفحه هنگام ورود یا بازگشت به سایت
+    try {
+      if (window.location.hash) {
+        history.replaceState(null, document.title, window.location.pathname + window.location.search);
+      }
+      const startAtTop = () => window.scrollTo({top: 0, left: 0, behavior: 'instant'});
+      startAtTop();
+      window.addEventListener('pageshow', () => requestAnimationFrame(startAtTop), {once: true});
+    } catch (_) {}
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const modes = {
+      calm: {name:'تنفس آرامش‌بخش', steps:[{key:'inhale',label:'دم بگیر',hint:'آروم هوا رو به درون بکش',seconds:4},{key:'exhale',label:'بازدم کن',hint:'بذار هوا نرم و آروم بیرون بره',seconds:6}]},
+      balance: {name:'تنفس متعادل‌کننده', steps:[{key:'inhale',label:'دم بگیر',hint:'به نرمی نفس بکش',seconds:5},{key:'exhale',label:'بازدم کن',hint:'آروم و بدون فشار بیرون بده',seconds:5}]},
+      box: {name:'تنفس برای تمرکز', steps:[{key:'inhale',label:'دم بگیر',hint:'هوا رو آروم به درون بکش',seconds:4},{key:'hold',label:'مکث کوتاه',hint:'فقط اگر راحتی، مکث کن',seconds:4},{key:'exhale',label:'بازدم کن',hint:'آروم هوا رو بیرون بده',seconds:4},{key:'hold',label:'یک مکث دیگه',hint:'بدون فشار، برای چند لحظه',seconds:4}]},
+      sleep: {name:'تنفس پیش از خواب', steps:[{key:'inhale',label:'دم بگیر',hint:'خیلی ملایم نفس بکش',seconds:4},{key:'exhale',label:'بازدم طولانی',hint:'آروم‌تر و طولانی‌تر بیرون بده',seconds:7}]}
+    };
+    // ۱۰ شروع × ۱۲ متن میانی × ۱۰ پایان = ۱۲۰۰ پیام مستقل برای هر حال‌وهوا.
+    // پنج حال‌وهوا در مجموع ۶۰۰۰ پیام متفاوت دارند.
+    const comfortMessageParts = {
+      sad: {
+        start: [
+          'رفیق، می‌دونم امروز دلت گرفته و شاید گفتنش هم آسون نباشه.',
+          'اگه بغضی گوشه‌ی گلوت مونده، لازم نیست همین الان قورتش بدی.',
+          'امروز همون‌قدر که هستی کافیه؛ حتی اگه لبخند زدن برات سخت شده.',
+          'گاهی دل آدم خسته می‌شه و فقط یک جای امن می‌خواد.',
+          'می‌خوام یادت بندازم که ناراحت بودن، از دوست‌داشتنی بودنت کم نمی‌کنه.',
+          'شاید امروز چیزهایی اون‌طوری که می‌خواستی پیش نرفتن؛ می‌فهمم.',
+          'لازم نیست برای حال دلت از کسی اجازه بگیری.',
+          'اگه امروز کم‌حرفی یا حوصله‌ی هیچ‌کس رو نداری، اشکالی نداره.',
+          'بعضی روزها فقط گذروندن ساعت‌ها هم انرژی زیادی می‌خواد.',
+          'بیا چند لحظه با خودت مهربون‌تر باشیم؛ همین‌جا و همین الان.'
+        ],
+        middle: [
+          'احساست واقعی و محترمه، حتی اگه نتونی دقیق توضیحش بدی.',
+          'یک روز سخت، همه‌ی زندگی و آینده‌ات رو تعریف نمی‌کنه.',
+          'قرار نیست همیشه محکم باشی؛ آدم بودن یعنی گاهی خسته و دلگیر شدن.',
+          'تو فقط وقتی خوشحالی ارزشمند نیستی؛ همین حالا هم ارزشمندی.',
+          'لازم نیست جواب همه‌ی سؤال‌ها رو امشب پیدا کنی.',
+          'اشک ریختن، سکوت کردن یا کمک خواستن هیچ‌کدوم نشونه‌ی ضعف نیست.',
+          'شاید قدم بعدی کوچیک باشه، اما قدم کوچیک هم حساب می‌شه.',
+          'خودت رو با روزهای خوب دیگران مقایسه نکن؛ از همه‌ی قصه‌ها خبر نداری.',
+          'به خودت فرصت بده؛ بعضی زخم‌ها با عجله خوب نمی‌شن.',
+          'تو بیشتر از اتفاقی هستی که امروز ناراحتت کرده.',
+          'لازم نیست وانمود کنی حالت خوبه تا دیگران راحت باشن.',
+          'مهربونی با خودت از همین پذیرفتن حال امروزت شروع می‌شه.'
+        ],
+        end: [
+          'فعلاً یک نفس آروم بکش و فقط همین چند دقیقه رو بگذرون.',
+          'اگه می‌تونی کمی آب بخور و شونه‌هات رو شل کن.',
+          'یک گوشه‌ی راحت پیدا کن و به خودت اجازه‌ی استراحت بده.',
+          'اگه دلت خواست با یک آدم امن حرف بزن؛ لازم نیست تنهایی تحمل کنی.',
+          'امروز از خودت انتظار زیادی نداشته باش؛ یک کار کوچیک کافیه.',
+          'دستت رو روی قلبت بذار و با خودت نرم‌تر حرف بزن.',
+          'هر وقت آماده بودی، فقط یک قدم کوچیک بردار؛ نه بیشتر.',
+          'یادت نره این حس می‌تونه تغییر کنه، حتی اگه الان دور به نظر بیاد.',
+          'برای امشب همین که مراقب خودت باشی، کار بزرگیه.',
+          'من طرفِ توام؛ با خودت مثل یک رفیق عزیز رفتار کن.'
+        ]
+      },
+      anxious: {
+        start: [
+          'رفیق، می‌دونم وقتی اضطراب میاد، حتی فکر کردن هم سخت می‌شه.',
+          'اگه ذهنت مدام بدترین حالت‌ها رو تصور می‌کنه، یک لحظه مکث کنیم.',
+          'الان لازم نیست همه‌چیز رو کنترل کنی؛ واقعاً لازم نیست.',
+          'می‌فهمم که نگرانی می‌تونه یک موضوع کوچیک رو خیلی بزرگ نشون بده.',
+          'بیا توجه‌مون رو از هزار فکر به همین لحظه برگردونیم.',
+          'وقتی دلشوره داری، با خودت دعوا نکن؛ بدنت داره نگرانی رو تجربه می‌کنه.',
+          'شاید قلبت تندتر می‌زنه و فکرت آروم نمی‌گیره؛ تنها نیستی.',
+          'قرار نیست همین الان برای تمام احتمالات جواب داشته باشی.',
+          'یک مکث کوتاه می‌تونه شروع خوبی برای آروم‌تر شدن باشه.',
+          'بیا با هم از این شلوغی ذهنی کمی فاصله بگیریم.'
+        ],
+        middle: [
+          'فکر، حتی وقتی خیلی قانع‌کننده به نظر می‌رسه، همیشه پیش‌بینیِ واقعیت نیست.',
+          'تو فقط مسئول قدم بعدی هستی، نه کنترل تمام اتفاق‌های دنیا.',
+          'بدنت به کمی احساس امنیت نیاز داره؛ لازم نیست بهش فشار بیاری.',
+          'می‌تونی نگران باشی و با این حال یک کار ساده رو انجام بدی.',
+          'همه‌ی اتفاق‌های احتمالی قرار نیست رخ بدن.',
+          'آروم شدن مسابقه نیست و قرار نیست در چند ثانیه کامل اتفاق بیفته.',
+          'همین که متوجه اضطرابت شدی، یعنی داری با آگاهی بهش نگاه می‌کنی.',
+          'قرار نیست برای آماده بودن، تمام آینده رو از قبل حل کنی.',
+          'گاهی برگشتن به چیزهایی که می‌بینی و می‌شنوی کمک می‌کنه.',
+          'نگرانی تو رو ضعیف نمی‌کنه؛ فقط نشون می‌ده چیزی برات مهمه.',
+          'می‌تونی یک موضوع رو به چند قدم کوچک‌تر تقسیم کنی.',
+          'به خودت یادآوری کن که این لحظه با تمام لحظه‌های بعد فرق داره.'
+        ],
+        end: [
+          'سه چیز اطرافت رو نگاه کن و اسمشون رو آروم توی ذهنت بگو.',
+          'کف پاهات رو روی زمین حس کن و فکت رو کمی رها کن.',
+          'یک بازدم نرم و طولانی داشته باش؛ بدون اینکه نفست رو حبس کنی.',
+          'فقط کار بعدی رو انتخاب کن و بقیه رو فعلاً کنار بذار.',
+          'یک جرعه آب بخور و چند لحظه از صفحه فاصله بگیر.',
+          'به خودت بگو: «الان اینجام و قدم بعدی رو بعداً برمی‌دارم.»',
+          'اگه نگرانی ادامه داشت، با یک آدم قابل اعتماد در میونش بذار.',
+          'قرار نیست با اضطرابت بجنگی؛ فعلاً بذار کنارت باشه و آروم پیش برو.',
+          'همین یک دقیقه رو زندگی کن، نه تمام فردا رو.',
+          'هر وقت آماده بودی، دوباره از یک قدم ساده شروع کن.'
+        ]
+      },
+      busy: {
+        start: [
+          'می‌دونم وقتی فکرت پر از کارهای نصفه‌نیمه‌ست، استراحت هم سخت می‌شه.',
+          'رفیق، لازم نیست همین الان به همه‌ی کارهای دنیا برسی.',
+          'وقتی همه‌چیز با هم صدا می‌زنه، بیا فقط یکی رو بشنویم.',
+          'شاید ذهنت از این شاخه به اون شاخه می‌پره و فرصت مکث نمی‌ده.',
+          'بیا بارِ این لحظه رو سبک‌تر کنیم؛ قرار نیست همه‌چیز یک‌جا حل بشه.',
+          'می‌فهمم که فهرست کارهات تمومی نداره و ذهنت خسته شده.',
+          'گاهی شلوغی ذهن از خودِ کارها خسته‌کننده‌تر می‌شه.',
+          'الان وقتشه چند تا از فکرها رو موقتاً زمین بذاری.',
+          'قرار نیست برای مفید بودن، هر دقیقه مشغول باشی.',
+          'بیا به ذهن شلوغت یک استراحت کوچیک هدیه بدیم.'
+        ],
+        middle: [
+          'همه‌ی کارها فوریت یکسان ندارن، حتی اگه ذهنت این‌طور بگه.',
+          'انجام ندادن یک کار در همین لحظه، به معنی شکست خوردن نیست.',
+          'تمرکز روی یک قدم، معمولاً از فکر کردن به صد قدم آسون‌تره.',
+          'استراحت وقت تلف کردن نیست؛ بخشی از مراقبت از توانته.',
+          'تو یک آدمی، نه یک فهرست بی‌پایان از وظایف.',
+          'لازم نیست همه‌ی درخواست‌ها رو همین امروز جواب بدی.',
+          'بعضی کارها می‌تونن صبر کنن تا تو نفسی تازه کنی.',
+          'ذهن شلوغ با سرزنش آروم نمی‌شه؛ با کمی نظم و مهربونی سبک‌تر می‌شه.',
+          'ارزش تو با تعداد کارهای تیک‌خورده اندازه‌گیری نمی‌شه.',
+          'می‌تونی بین کارها فاصله بذاری و هنوز آدم مسئولیت‌پذیری باشی.',
+          'قرار نیست همه‌چیز کامل پیش بره تا تو حق آرامش داشته باشی.',
+          'یک تصمیم کوچیک بهتر از چرخیدن بی‌پایان بین گزینه‌هاست.'
+        ],
+        end: [
+          'سه کار مهم رو بنویس و فعلاً فقط اولی رو انتخاب کن.',
+          'برای دو دقیقه گوشی رو کنار بذار و به چشم‌هات استراحت بده.',
+          'یک بازدم آروم انجام بده و شونه‌هات رو از کنار گوش‌هات دور کن.',
+          'یک لیوان آب بخور و بعد سراغ قدم بعدی برو.',
+          'هر چیزی که ضروری نیست رو به زمان دیگه موکول کن.',
+          'به خودت اجازه بده بین دو کار، چند دقیقه هیچ کاری نکنی.',
+          'از خودت بپرس: «الان واقعاً مهم‌ترین کار چیه؟»',
+          'یک کار رو تموم کن، بعد درباره‌ی بقیه تصمیم بگیر.',
+          'امروز لازم نیست رکورد بزنی؛ فقط به اندازه‌ی توانت پیش برو.',
+          'یادت باشه تو هم باید در برنامه‌ی روزت جا داشته باشی.'
+        ]
+      },
+      tired: {
+        start: [
+          'رفیق، اگه خسته‌ای، لازم نیست برای استراحت کردن دلیل بیاری.',
+          'شاید امروز بیشتر از چیزی که فکر می‌کنی از خودت مایه گذاشتی.',
+          'می‌دونم بعضی خستگی‌ها با یک خواب کوتاه هم فوری برطرف نمی‌شن.',
+          'اگه انرژی نداری، بیا امروز کمی آهسته‌تر با خودت رفتار کنیم.',
+          'قرار نیست هر روز پرقدرت و سرحال از خواب بیدار بشی.',
+          'بدنت و ذهنت هم حق دارن بگن: «یکم مکث می‌خوام.»',
+          'شاید مدت‌هاست داری بیشتر از توانت خودت رو جلو می‌بری.',
+          'امروز می‌تونه روزِ کم کردن سرعت باشه، نه بیشتر تلاش کردن.',
+          'اگه حتی کارهای ساده هم سخت شدن، با خودت مهربون باش.',
+          'بیا برای چند لحظه از مسابقه‌ی همیشگی زندگی بیرون بیایم.'
+        ],
+        middle: [
+          'استراحت جایزه‌ای نیست که فقط بعد از کامل کردن همه‌چیز بگیری.',
+          'تو مجبور نیستی خستگی‌ات رو پشت لبخند پنهان کنی.',
+          'کم کردن سرعت، عقب افتادن از زندگی نیست.',
+          'ارزش تو به میزان انرژی و بهره‌وری امروزت وابسته نیست.',
+          'گاهی بهترین تصمیم اینه که کار غیرضروری رو به بعد بسپری.',
+          'بدن تو سزاوار توجهه، نه فقط انتظار و فشار بیشتر.',
+          'یک روز کم‌انرژی، تمام توانایی‌های تو رو پاک نمی‌کنه.',
+          'می‌تونی به جای سرزنش، از خودت بپرسی الان چی لازم داری.',
+          'قرار نیست خستگی رو با زور و عجله از خودت بیرون کنی.',
+          'همین که به نیازت توجه کردی، شروع مراقبت از خودته.',
+          'آدم گاهی با توقف کوتاه، بهتر می‌تونه ادامه بده.',
+          'لازم نیست امروز همه‌ی نسخه‌های دیروز خودت باشی.'
+        ],
+        end: [
+          'اگه می‌تونی چند دقیقه دراز بکش و چشم‌هات رو ببند.',
+          'یک نوشیدنی یا خوراکی ساده برای خودت آماده کن.',
+          'فقط یک کار ضروری رو نگه دار و بقیه رو سبک‌تر کن.',
+          'گوشی رو کمی دورتر بذار و به خودت فرصت سکوت بده.',
+          'چند نفس طبیعی بکش و فکت رو از حالت انقباض بیرون بیار.',
+          'اگه خوابت میاد، به جای جنگیدن باهاش به بدنت گوش کن.',
+          'از یک نفر کمک بخواه؛ قرار نیست همه‌چیز رو تنهایی انجام بدی.',
+          'امشب با خودت قرار بذار کمی زودتر به استراحت برسی.',
+          'به خودت بگو: «حق دارم خسته باشم و حق دارم استراحت کنم.»',
+          'امروز همین مراقبت کوچیک از خودت کافیه.'
+        ]
+      },
+      good: {
+        start: [
+          'چه خوب که امروز یک گوشه از دلت روشنه؛ بیا قدرش رو بدونیم.',
+          'رفیق، اگه حالت خوبه، لازم نیست دلیل بزرگی برای خوشحال بودنت داشته باشی.',
+          'امیدوارم این لحظه‌ی خوب رو بدون عجله تجربه کنی.',
+          'چه قشنگه که وسط روزهای معمولی، گاهی حال آدم بهتر می‌شه.',
+          'بیا این حال خوب رو با چند لحظه توجه و مهربونی نگه داریم.',
+          'اگه امروز لبخند روی لبت نشسته، بذار همون‌جا بمونه.',
+          'گاهی آرامش خیلی ساده میاد؛ درست مثل همین لحظه.',
+          'می‌خوام بهت یادآوری کنم که شادی‌های کوچیک هم مهمن.',
+          'چه خوب که برای حال خوبت چند لحظه وقت گذاشتی.',
+          'بیا این حس روشن رو ببینیم، بدون اینکه از فردا نگران باشیم.'
+        ],
+        middle: [
+          'لازم نیست خوشحالی‌ات رو با اتفاقی بزرگ توجیه کنی.',
+          'همین لحظه‌ی معمولی هم می‌تونه بخشی از یک خاطره‌ی قشنگ بشه.',
+          'تو حق داری از نتیجه‌ی تلاش‌هات خوشحال باشی.',
+          'دیدن خوبی‌های کوچیک، به معنی نادیده گرفتن سختی‌ها نیست.',
+          'حال خوب هم مثل بقیه‌ی احساس‌ها میاد و می‌ره؛ می‌تونی از بودنش لذت ببری.',
+          'مهربونی‌ای که به خودت می‌کنی، ارزش جشن گرفتن داره.',
+          'لازم نیست این حس رو برای همیشه نگه داری؛ فقط همین الان تجربه‌اش کن.',
+          'گاهی یک گفت‌وگوی خوب یا نور آفتاب برای بهتر شدن روز کافیه.',
+          'به خودت فرصت بده نتیجه‌ی قدم‌هایی رو که برداشتی ببینی.',
+          'می‌تونی هم قدردان امروز باشی و هم برای فردا آرزوهای تازه داشته باشی.',
+          'لحظه‌های آرام هم به اندازه‌ی موفقیت‌های بزرگ ارزشمندند.',
+          'خوشحالی تو لازم نیست شبیه خوشحالی هیچ‌کس دیگه‌ای باشه.'
+        ],
+        end: [
+          'یک چیز کوچیک رو که امروز دوست داشتی، برای خودت مرور کن.',
+          'اگه دلت خواست این حس خوب رو با یک آدم عزیز شریک شو.',
+          'چند لحظه به اطرافت نگاه کن و از چیزی که می‌بینی لذت ببر.',
+          'برای خودت یک کار کوچیک و دوست‌داشتنی انجام بده.',
+          'این لحظه رو با یک نفس آروم و یک لبخند کوچیک همراه کن.',
+          'به خودت بابت تلاشی که کردی آفرین بگو.',
+          'یک خاطره‌ی خوب از امروز رو جایی یادداشت کن.',
+          'از این آرامش لذت ببر؛ لازم نیست همین حالا به بعدش فکر کنی.',
+          'اگه فرصت داری کمی قدم بزن و هوای تازه بخور.',
+          'یادت بمونه که همین لحظه‌های ساده هم بخشی از زندگی‌ان.'
+        ]
+      }
+    };
+    const COMFORT_MESSAGES_PER_MOOD=1200;
+    const comfortMessages=Object.fromEntries(Object.entries(comfortMessageParts).map(([mood,parts])=>{
+      const messages=[];
+      for(let a=0;a<parts.start.length;a++)for(let b=0;b<parts.middle.length;b++)for(let c=0;c<parts.end.length;c++){
+        messages.push(`${parts.start[a]} ${parts.middle[b]} ${parts.end[c]}`);
+      }
+      return [mood,messages];
+    }));
+    const comfortFoots = {sad:'غمگین بودن چیزی از ارزش تو کم نمی‌کنه.',anxious:'به اندازه‌ی توان همین لحظه‌ات پیش برو.',busy:'فعلاً لازم نیست به همه‌چیز برسی.',tired:'استراحت هم بخشی از مسیرته.',good:'به خودت اجازه بده از این لحظه لذت ببری.'};
+    let currentMode=Object.prototype.hasOwnProperty.call(modes,readPreference('breathingMode','calm'))?readPreference('breathingMode','calm'):'calm', running=false, stepIndex=0, secondsLeft=0, cycle=0, tickTimer=null, soundEnabled=readPreference('soundEnabled',true)!==false, audioContext=null, toastTimer=null;
+    const orb=$('#breathOrb'), phase=$('#breathPhase'), hint=$('#breathHint'), countdown=$('#countdown'), startBtn=$('#breathStart');
+
+    function showToast(message){const node=$('#toast');node.textContent=message;node.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>node.classList.remove('show'),2600)}
+    const themeToggle=$('#themeToggle');
+    function applyTheme(theme, announce=false){
+      const dark=theme==='dark';
+      document.documentElement.dataset.theme=dark?'dark':'light';
+      themeToggle.setAttribute('aria-pressed',String(dark));
+      themeToggle.setAttribute('aria-label',dark?'فعال کردن حالت روز':'فعال کردن حالت شب');
+      $('#themeIcon').textContent=dark?'☀':'☾';
+      $('#themeLabel').textContent=dark?'حالت روز':'حالت شب';
+      $('#themeColorMeta').setAttribute('content',dark?'#101b18':'#f4f6f1');
+      try{localStorage.setItem('panah-theme',dark?'dark':'light')}catch(_){}
+      if(announce)showToast(dark?'حالت شب روشن شد؛ آروم باش.':'حالت روز روشن شد؛ خوش اومدی.');
+    }
+    applyTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
+    themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',true));
+    function getAudio(){if(!soundEnabled)return null;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;if(!audioContext)audioContext=new AC();if(audioContext.state==='suspended')audioContext.resume();return audioContext}catch(_){return null}}
+    function chime(kind='soft'){
+      const ctx=getAudio();if(!ctx)return;
+      const frequencies=kind==='inhale'?[392,523.25]:kind==='exhale'?[329.63,261.63]:kind==='hold'?[440]:[523.25,392];
+      frequencies.forEach((frequency,index)=>{const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,ctx.currentTime);gain.gain.setValueAtTime(.0001,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(index===0?.035:.018,ctx.currentTime+.08);gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+1.05);oscillator.connect(gain);gain.connect(ctx.destination);oscillator.start();oscillator.stop(ctx.currentTime+1.08)});
+    }
+    function updateModeButtons(){ $$('[data-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mode===currentMode)));$('#selectedModeLabel').textContent='تمرین '+modes[currentMode].name }
+    function setOrb(step){orb.classList.remove('inhale','exhale','hold');void orb.offsetWidth;orb.classList.add(step.key);orb.style.transitionDuration=(reducedMotion?'.01':step.seconds+'s')+'s';phase.textContent=step.label;hint.textContent=step.hint;secondsLeft=step.seconds;countdown.textContent=secondsLeft+' ثانیه';if(soundEnabled)chime(step.key)}
+    function renderStep(){const data=modes[currentMode];const step=data.steps[stepIndex];setOrb(step);$('#cycleLabel').textContent='چرخه‌ی '+cycle;}
+    function nextSecond(){if(!running)return;secondsLeft--;countdown.textContent=Math.max(0,secondsLeft)+' ثانیه';if(secondsLeft<=0){stepIndex++;if(stepIndex>=modes[currentMode].steps.length){stepIndex=0;cycle++;}renderStep()}tickTimer=setTimeout(nextSecond,1000)}
+    function stopBreathing(reset=true){running=false;clearTimeout(tickTimer);startBtn.textContent='شروع تمرین';orb.classList.remove('inhale','exhale','hold');orb.style.transitionDuration='1s';if(reset){stepIndex=0;cycle=0;phase.textContent='آماده‌ای؟';hint.textContent='هر وقت آماده شدی، شروع رو بزن.';countdown.textContent='این چند لحظه مال خودته';$('#cycleLabel').textContent='هنوز شروع نکردیم';orb.style.transform='scale(.82)'}}
+    startBtn.addEventListener('click',()=>{if(running){stopBreathing(false);showToast('هر وقت خواستی دوباره شروع کن.');return;}running=true;stepIndex=0;cycle=1;startBtn.textContent='مکث';getAudio();renderStep();tickTimer=setTimeout(nextSecond,1000)});
+    $('#breathReset').addEventListener('click',()=>{stopBreathing(true);showToast('تمرین از نو آماده‌ست.')});
+    $$('[data-mode]').forEach(button=>button.addEventListener('click',()=>{currentMode=button.dataset.mode;savePreference('breathingMode',currentMode);stopBreathing(true);updateModeButtons();}));
+    $('#soundToggle').setAttribute('aria-pressed',String(soundEnabled));$('#soundLabel').textContent=soundEnabled?'صدای آرام روشن':'صدا خاموشه';
+    $('#soundToggle').addEventListener('click',()=>{soundEnabled=!soundEnabled;savePreference('soundEnabled',soundEnabled);$('#soundToggle').setAttribute('aria-pressed',String(soundEnabled));$('#soundLabel').textContent=soundEnabled?'صدای آرام روشن':'صدا خاموشه';if(soundEnabled){chime('soft');showToast('صدای ملایم روشن شد.')}else showToast('صدا خاموش شد؛ تمرین ادامه داره.');});
+
+    const validMoods=Object.keys(comfortMessages);
+    let activeComfortMood=validMoods.includes(readPreference('comfortMood'))?readPreference('comfortMood'):null;
+    function shuffleIndexes(){
+      const indexes=Array.from({length:COMFORT_MESSAGES_PER_MOOD},(_,index)=>index);
+      for(let i=indexes.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[indexes[i],indexes[j]]=[indexes[j],indexes[i]];}
+      return indexes;
+    }
+    function deckStorageKey(mood){return 'panah-message-progress-v1-'+mood;}
+    function readMessageDeck(mood){
+      try{
+        const saved=JSON.parse(localStorage.getItem(deckStorageKey(mood))||'null');
+        if(saved&&Array.isArray(saved.order)&&saved.order.length===COMFORT_MESSAGES_PER_MOOD&&Number.isInteger(saved.position)&&saved.position>=0&&saved.position<=COMFORT_MESSAGES_PER_MOOD&&saved.order.every(index=>Number.isInteger(index)&&index>=0&&index<COMFORT_MESSAGES_PER_MOOD)&&new Set(saved.order).size===COMFORT_MESSAGES_PER_MOOD)return saved;
+      }catch(_){}
+      return {order:shuffleIndexes(),position:0,last:null};
+    }
+    function saveMessageDeck(mood,deck){try{localStorage.setItem(deckStorageKey(mood),JSON.stringify(deck))}catch(_){showToast('نتونستم پیشرفت پیام‌ها رو توی مرورگر ذخیره کنم.')}}
+    function nextComfortMessage(mood){
+      const deck=readMessageDeck(mood);
+      if(deck.position>=COMFORT_MESSAGES_PER_MOOD){
+        const nextOrder=shuffleIndexes();
+        if(nextOrder.length>1&&nextOrder[0]===deck.last)[nextOrder[0],nextOrder[1]]=[nextOrder[1],nextOrder[0]];
+        deck.order=nextOrder;deck.position=0;
+      }
+      const chosenIndex=deck.order[deck.position++];deck.last=chosenIndex;
+      saveMessageDeck(mood,deck);
+      return comfortMessages[mood][chosenIndex];
+    }
+    function showComfortMessage(mood){
+      $('#comfortText').textContent=nextComfortMessage(mood);
+      $('#comfortFoot').textContent=comfortFoots[mood];
+      const card=$('#comfortCard');
+      card.classList.remove('show');
+      requestAnimationFrame(()=>card.classList.add('show'));
+    }
+    $$('[data-mood]').forEach(button=>{button.setAttribute('aria-pressed',String(button.dataset.mood===activeComfortMood));button.addEventListener('click',()=>{
+      activeComfortMood=button.dataset.mood;savePreference('comfortMood',activeComfortMood);
+      $$('[data-mood]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+      showComfortMessage(activeComfortMood);
+    });});
+    $('#comfortMore').addEventListener('click',()=>{
+      if(!activeComfortMood)return;
+      showComfortMessage(activeComfortMood);
+    });
+
+    $('#releaseButton').addEventListener('click',()=>{
+      const textarea=$('#heartNote'), sheet=$('#letterSheet'), status=$('#releaseStatus'), button=$('#releaseButton');
+      if(!textarea.value.trim()){textarea.focus();status.textContent='اول هرچیزی توی دلت هست بنویس؛ حتی چند کلمه.';return;}
+      if(sheet.classList.contains('releasing'))return;
+      button.disabled=true;button.style.opacity='.6';status.textContent='آروم... بذار بره.';
+      const particles=$('#releaseParticles');particles.innerHTML='';
+      for(let i=0;i<13;i++){const bit=document.createElement('i');bit.style.setProperty('--delay',(Math.random()*.3)+'s');bit.style.setProperty('--x',((Math.random()-.5)*230)+'px');bit.style.setProperty('--rot',((Math.random()*100)-50)+'deg');bit.style.right=(35+Math.random()*30)+'%';particles.appendChild(bit)}
+      sheet.classList.add('releasing');chime('release');
+      setTimeout(()=>{textarea.value='';sheet.classList.remove('releasing');particles.innerHTML='';button.disabled=false;button.style.opacity='1';status.textContent='رهاش کردی؛ همین که به دلت فرصت دادی کافیه. ♡';showToast('یکم سبک‌تر... با خودت مهربون باش.');},reducedMotion?80:1050);
+    });
+
+    const GARDEN_STORAGE_KEY='panah-garden-v1';
+    let gardenFlowerIds=[];
+    try{const savedFlowers=JSON.parse(localStorage.getItem(GARDEN_STORAGE_KEY)||'[]');if(Array.isArray(savedFlowers))gardenFlowerIds=savedFlowers.filter(id=>Number.isSafeInteger(id)&&id>=0).slice(-1500)}catch(_){}
+    let nextFlowerId=gardenFlowerIds.length?Math.max(...gardenFlowerIds)+1:0;
+    const flowerColors=[['#e9a6a5','#d67f82'],['#e9c98e','#d7a95f'],['#c5afd9','#a58ac0'],['#f1b9cc','#d993af'],['#f3e3a4','#d6bd69'],['#b4cde0','#85aac6']];
+    function makeFlower(index,animate=true){const colors=flowerColors[index%flowerColors.length];const flower=document.createElement('div');flower.className='flower';const left=7+((index*17+Math.floor(index/4)*9)%86);const height=105+(index%4)*12;flower.style.left=left+'%';flower.style.height=height+'px';flower.style.width=(43+(index%3)*5)+'px';flower.style.animationDelay=(Math.random()*.18)+'s';flower.style.transform=`rotate(${(index%2?1:-1)*(3+(index%4))}deg)`;
+      flower.innerHTML=`<svg viewBox="0 0 60 160" aria-hidden="true"><path d="M30 151 C27 121 35 91 30 58" stroke="#719b78" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M30 112 C12 91 9 108 28 120" fill="#a4c6a5"/><path d="M31 132 C49 109 54 127 33 139" fill="#91b997"/><g transform="translate(30 48)"><ellipse cy="-13" rx="7" ry="12" fill="${colors[0]}"/><ellipse cy="13" rx="7" ry="12" fill="${colors[0]}"/><ellipse cx="-13" rx="12" ry="7" fill="${colors[0]}"/><ellipse cx="13" rx="12" ry="7" fill="${colors[0]}"/><ellipse cx="-9" cy="-9" rx="7" ry="11" transform="rotate(-45 -9 -9)" fill="${colors[0]}"/><ellipse cx="9" cy="-9" rx="7" ry="11" transform="rotate(45 9 -9)" fill="${colors[0]}"/><ellipse cx="-9" cy="9" rx="7" ry="11" transform="rotate(45 -9 9)" fill="${colors[0]}"/><ellipse cx="9" cy="9" rx="7" ry="11" transform="rotate(-45 9 9)" fill="${colors[0]}"/><circle r="6.5" fill="${colors[1]}"/></g></svg>`;if(!animate)flower.style.animation='none';return flower;}
+    function updateGardenDisplay(){const count=gardenFlowerIds.length;$('#flowerCount').textContent=count.toLocaleString('fa-IR')+' گل کاشتی';$('#emptyGarden').style.opacity=count?'0':'1';$('#emptyGarden').setAttribute('aria-hidden',String(count>0));$('#clearGardenButton').disabled=count===0;}
+    function saveGarden(){try{localStorage.setItem(GARDEN_STORAGE_KEY,JSON.stringify(gardenFlowerIds))}catch(_){showToast('باغت بزرگ شده، ولی فضای ذخیره‌سازی مرورگر پره.')}}
+    const gardenCanvas=$('#gardenCanvas');gardenFlowerIds.forEach(id=>gardenCanvas.appendChild(makeFlower(id,false)));updateGardenDisplay();
+    $('#plantButton').addEventListener('click',()=>{const id=nextFlowerId++;gardenFlowerIds.push(id);gardenCanvas.appendChild(makeFlower(id));saveGarden();updateGardenDisplay();if(gardenFlowerIds.length===1)showToast('اولین گل باغت شکفت 🌼');else showToast('یه گل دیگه هم به باغت اضافه شد.');});
+    $('#clearGardenButton').addEventListener('click',()=>{if(!gardenFlowerIds.length)return;if(!window.confirm('مطمئنی می‌خوای همه‌ی گل‌های باغت پاک بشن؟'))return;gardenFlowerIds=[];gardenCanvas.querySelectorAll('.flower').forEach(flower=>flower.remove());saveGarden();updateGardenDisplay();showToast('باغت با انتخاب خودت دوباره خالی شد. 🌱');});
+
+    updateModeButtons();
+  })();
+  </script>
+</body>
+</html>
